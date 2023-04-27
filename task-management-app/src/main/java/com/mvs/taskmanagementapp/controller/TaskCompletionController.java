@@ -4,13 +4,11 @@ import com.mvs.taskmanagementapp.dto.DateRequestDTO;
 import com.mvs.taskmanagementapp.service.TaskCompletionDateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class TaskCompletionController {
@@ -19,8 +17,11 @@ public class TaskCompletionController {
 
     @PostMapping("/")
     public ResponseEntity<LocalDate> calTaskCompletionDate(@RequestBody DateRequestDTO dateRequestDTO) {
+        System.out.println(dateRequestDTO.getNumberOfDays());
         LocalDate date =  dateService.calTaskCompletionDate(dateRequestDTO.getStartDate(),
                 dateRequestDTO.getNumberOfDays());
+
         return ResponseEntity.ok(date);
+
     }
 }
