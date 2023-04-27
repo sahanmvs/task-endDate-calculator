@@ -16,17 +16,16 @@ class TaskCompletionDateServiceTest {
     @Autowired
     private TaskCompletionDateService dateService;
 
-    private LocalDate expectedEndDate;
-
     @BeforeEach
     void setUp() {
-        expectedEndDate = LocalDate.of(2023, 5, 5);
+
     }
 
     @Test
     @DisplayName("Get endDate when startDate and numberOfDays to complete is given")
     public void testCalculateTaskEndDate() {
         LocalDate startDate = LocalDate.of(2023, 4, 28);
+        LocalDate expectedEndDate = LocalDate.of(2023, 5, 5);
         int numOfDays = 4;
         LocalDate endDate =
                 dateService.calTaskCompletionDate(startDate, numOfDays);
